@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medique Hospital Management Portal</title>
+<link rel="stylesheet" href="css/portal.css">
+</head>
+<body>
+<section class="login-shell" id="loginShell">
+  <div class="login-art">
+    <div class="brand"><span class="brand-mark">M</span> Medique</div>
+    <div>
+      <h1>Hospital workflows, queues, and appointments in one live portal.</h1>
+      <p>Role-based dashboards for patients, doctors, and administrators at Medique Multi-Speciality Hospital, Hyderabad.</p>
+    </div>
+    <p>Priority queue rule: Emergency first, High priority next, Normal after that, FIFO inside each level.</p>
+  </div>
+  <div class="login-panel">
+    <form class="login-card" onsubmit="event.preventDefault(); login();">
+      <h2>Sign in</h2>
+      <p>Use any password for this local demo.</p>
+      <div class="role-tabs">
+        <button class="role-tab active" type="button" onclick="selectLoginRole(this,'patient')">Patient</button>
+        <button class="role-tab" type="button" onclick="selectLoginRole(this,'doctor')">Doctor</button>
+        <button class="role-tab" type="button" onclick="selectLoginRole(this,'admin')">Admin</button>
+      </div>
+      <div class="field"><label>Email</label><input id="loginEmail" type="email" value="patient@medique.in" required></div>
+      <div class="field"><label>Password</label><input id="loginPassword" type="password" value="medique123" required></div>
+      <button class="btn btn-primary" style="width:100%" type="submit">Open Dashboard</button>
+      <div class="demo-box">
+        Demo accounts: patient@medique.in, doctor@medique.in, admin@medique.in
+      </div>
+      <div style="display:flex;justify-content:center;margin-top:14px">
+        <a class="btn btn-ghost" href="index.html">Back to Website</a>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="app" id="app">
+  <header class="topbar">
+    <div class="topbar-left">
+      <a class="brand" href="index.html"><span class="brand-mark">M</span> Medique</a>
+      <span class="role-pill" id="rolePill">Patient</span>
+    </div>
+    <div class="topbar-actions">
+      <div class="project-wrap" id="projectWrap">
+        <button class="btn btn-ghost btn-small" id="projectToggle" onclick="toggleProjectMenu()" aria-expanded="false" aria-controls="projectMenu">Project Mode</button>
+        <div class="project-menu" id="projectMenu">
+          <button onclick="openWebsite()">Public Website</button>
+          <button onclick="switchProject('patient')">Patient Portal</button>
+          <button onclick="switchProject('doctor')">Doctor Portal</button>
+          <button onclick="switchProject('admin')">Admin Portal</button>
+        </div>
+      </div>
+      <button class="btn btn-ghost btn-small" onclick="syncNow()">Sync</button>
+      <button class="btn btn-ghost btn-small" onclick="toggleTheme()">Theme</button>
+      <button class="btn btn-soft btn-small" onclick="logout()">Logout</button>
+    </div>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sideNav"></aside>
+    <main class="main">
+      <div id="view"></div>
+    </main>
+  </div>
+</section>
+
+<div class="modal" id="walkinModal" role="dialog" aria-modal="true" aria-labelledby="walkinTitle">
+  <form class="modal-card" onsubmit="event.preventDefault(); addWalkIn();">
+    <div class="modal-head">
+      <div><h3 id="walkinTitle">Add Walk-In Patient</h3><p style="color:var(--muted);margin:4px 0 0">Reception or admin can insert walk-ins into the same priority queue.</p></div>
+      <button class="close" type="button" onclick="closeModal('walkinModal')" aria-label="Close">x</button>
+    </div>
+    <div class="form-grid">
+      <div class="field"><label>Patient Name</label><input id="walkName" required></div>
+      <div class="field"><label>Phone</label><input id="walkPhone" inputmode="tel" required></div>
+      <div class="field"><label>Department</label><select id="walkDept" onchange="fillDoctorDropdown('walkDoctor',this.value)" required></select></div>
+      <div class="field"><label>Doctor</label><select id="walkDoctor" required></select></div>
+      <div class="field"><label>Priority</label><select id="walkPriority"><option>Normal</option><option>High</option><option>Emergency</option></select></div>
+      <div class="field"><label>Visit Type</label><select id="walkType"><option>General Consultation</option><option>Follow-Up</option><option>Emergency Consultation</option></select></div>
+    </div>
+    <div class="field"><label>Symptoms or Notes</label><textarea id="walkNotes"></textarea></div>
+    <button class="btn btn-green" style="width:100%" type="submit">+ Add to Queue</button>
+  </form>
+</div>
+
+<div class="modal" id="prescriptionModal" role="dialog" aria-modal="true" aria-labelledby="rxTitle">
+  <form class="modal-card" onsubmit="event.preventDefault(); savePrescription();">
+    <div class="modal-head">
+      <div><h3 id="rxTitle">Add Prescription</h3><p style="color:var(--muted);margin:4px 0 0">Attach consultation notes to the patient record.</p></div>
+      <button class="close" type="button" onclick="closeModal('prescriptionModal')" aria-label="Close">x</button>
+    </div>
+    <div class="form-grid">
+      <div class="field"><label>Token</label><input id="rxToken" required></div>
+      <div class="field"><label>Doctor</label><input id="rxDoctor" required></div>
+    </div>
+    <div class="field"><label>Prescription and Notes</label><textarea id="rxNotes" required></textarea></div>
+    <button class="btn btn-primary" style="width:100%" type="submit">Save Prescription</button>
+  </form>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/portal.js"></script>
+</body>
+</html>
+

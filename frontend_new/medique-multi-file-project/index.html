@@ -1,0 +1,337 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medique Multi-Speciality Hospital</title>
+<link rel="stylesheet" href="css/public.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="topbar">
+  <div class="topbar-inner">
+    <span>Medique Multi-Speciality Hospital, HITEC City Road, Hyderabad, Telangana</span>
+    <span>Emergency: 040-4688-1122 | Open 24/7</span>
+  </div>
+</div>
+<header class="nav" aria-label="Primary navigation">
+  <div class="nav-inner">
+    <a class="brand" href="#home" onclick="showPage('home')"><span class="brand-mark">M</span> Medique</a>
+    <nav class="links" id="navLinks">
+      <button class="nav-btn active" onclick="navTo(this,'home')">Home</button>
+      <button class="nav-btn" onclick="navTo(this,'about')">About Hospital</button>
+    </nav>
+    <div class="menu-wrap" id="mainMenuWrap">
+      <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()" aria-expanded="false" aria-controls="mainMenu" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="mega-menu" id="mainMenu" role="menu" aria-label="Medique menu">
+        <div class="menu-section">
+          <strong>Hospital Pages</strong>
+          <button onclick="menuNav('departments')">Departments</button>
+          <button onclick="menuNav('doctors')">Doctors</button>
+          <button onclick="menuNav('book')">Book Appointment</button>
+          <button onclick="menuNav('queue')">Queue Tracking</button>
+          <button onclick="menuNav('emergency')">Emergency</button>
+          <button onclick="menuNav('services')">Services</button>
+          <button onclick="menuNav('contact')">Contact</button>
+        </div>
+        <div class="menu-section project-section">
+          <strong>Project Mode</strong>
+          <button onclick="menuNav('home')">Public Website</button>
+          <button onclick="goPortal('patient')">Patient Portal</button>
+          <button onclick="goPortal('doctor')">Doctor Portal</button>
+          <button onclick="goPortal('admin')">Admin Portal</button>
+        </div>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <button class="btn btn-ghost btn-icon" title="Toggle theme" onclick="toggleTheme()">D</button>
+      <button class="btn btn-primary" onclick="openLogin()">Login</button>
+      <button class="btn btn-green mobile-only" onclick="showPage('book')">Book</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page active" id="page-home">
+    <div class="hero">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow">20+ Years of Healthcare Excellence</span>
+          <h1>Smart Healthcare Starts with Medique</h1>
+          <p>Book appointments instantly, track queues in real time, and receive world-class care at Medique Multi-Speciality Hospital in Hyderabad.</p>
+          <div class="hero-actions">
+            <button class="btn btn-green" onclick="showPage('book')">+ Book Appointment</button>
+            <button class="btn btn-danger" onclick="showPage('emergency')">! Emergency Help</button>
+            <button class="btn btn-soft" onclick="showPage('queue')">View Live Queue</button>
+          </div>
+          <div class="hero-metrics">
+            <div class="metric"><strong>350</strong><span>Beds</span></div>
+            <div class="metric"><strong>120</strong><span>Doctors</span></div>
+            <div class="metric"><strong>15</strong><span>Departments</span></div>
+            <div class="metric"><strong>50K+</strong><span>Patients Served</span></div>
+          </div>
+        </div>
+        <aside class="live-card" aria-label="Live queue preview">
+          <div class="live-head">
+            <strong>Live Queue Preview</strong>
+            <span class="live-dot">Live</span>
+          </div>
+          <div class="token-row">
+            <div class="token-box"><small>Current Token</small><strong id="homeCurrentToken">N001</strong></div>
+            <div class="token-box"><small>Next Token</small><strong id="homeNextToken">H001</strong></div>
+          </div>
+          <div class="token-box" style="margin-bottom:12px"><small>Estimated Wait</small><strong id="homeWait">12 min</strong></div>
+          <div class="mini-table" id="homeQueueMini"></div>
+        </aside>
+      </div>
+    </div>
+    <section class="section-tight">
+      <div class="wrap">
+        <div class="stat-grid">
+          <div class="stat"><b>2005</b><span>Established</span></div>
+          <div class="stat"><b>24/7</b><span>Emergency Care</span></div>
+          <div class="stat"><b>12 min</b><span>Average Wait</span></div>
+          <div class="stat"><b>4.8/5</b><span>Patient Rating</span></div>
+          <div class="stat"><b>NABH</b><span>Quality Systems</span></div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="wrap grid-2">
+        <div class="image-card">
+          <img src="https://images.pexels.com/photos/8460372/pexels-photo-8460372.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Modern hospital care team in a clinical corridor">
+          <div class="caption">
+            <strong>Medique Multi-Speciality Hospital</strong>
+            <p>Hyderabad's single-hospital care network with digital appointment orchestration and transparent queue flow.</p>
+          </div>
+        </div>
+        <div class="card">
+          <span class="eyebrow">Hospital Overview</span>
+          <h2 style="font-size:36px;line-height:1.05;margin:0 0 14px">A connected care experience from arrival to consultation.</h2>
+          <p style="color:var(--muted)">Medique combines clinical expertise with queue intelligence. Patients can reserve a slot online, walk in for urgent support, receive a token, and watch their queue position update as doctors progress through consultations.</p>
+          <div class="grid-2" style="margin-top:18px">
+            <div class="card flat"><b>Mission</b><p>Efficient, transparent, technology-driven healthcare.</p></div>
+            <div class="card flat"><b>Location</b><p>Hyderabad, Telangana, India.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section" style="background:var(--card)">
+      <div class="wrap">
+        <div class="section-title">
+          <div><span class="eyebrow">Services</span><h2>Speciality care with faster patient flow</h2></div>
+          <button class="btn btn-soft" onclick="showPage('departments')">Explore Departments</button>
+        </div>
+        <div class="grid-3" id="homeServices"></div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="wrap">
+        <div class="section-title">
+          <div><span class="eyebrow">Featured Doctors</span><h2>Trusted specialists available this week</h2></div>
+          <button class="btn btn-soft" onclick="showPage('doctors')">View All Doctors</button>
+        </div>
+        <div class="grid-4" id="featuredDoctors"></div>
+      </div>
+    </section>
+    <section class="section" style="background:var(--card)">
+      <div class="wrap grid-3">
+        <div class="card"><span class="badge green">Patient Review</span><p>"The token system saved us a lot of waiting. We could see exactly when our turn was coming."</p><b>- Neha R., Hyderabad</b></div>
+        <div class="card"><span class="badge blue">Patient Review</span><p>"Booking cardiology was simple, and emergency staff moved my father to priority care immediately."</p><b>- Kiran M., Secunderabad</b></div>
+        <div class="card"><span class="badge green">Patient Review</span><p>"The doctor portal keeps consultations moving without the usual crowding near the reception desk."</p><b>- Admin Team</b></div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="wrap">
+        <div class="section-title"><div><span class="eyebrow">FAQ</span><h2>Common patient questions</h2></div></div>
+        <div class="faq">
+          <details><summary>Can I book an appointment and still join the queue?</summary><p>Yes. Online appointments generate a token automatically and enter the same priority queue used for walk-in patients.</p></details>
+          <details><summary>How are emergency patients handled?</summary><p>Emergency cases receive the highest priority. Within the same priority group, Medique serves patients in first-in, first-out order.</p></details>
+          <details><summary>Can I see my live position?</summary><p>Yes. Use Queue Tracking on this site or sign in to the portal to see your token, estimated waiting time, and doctor assignment.</p></details>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <section class="page" id="page-about">
+    <div class="section">
+      <div class="wrap grid-2">
+        <div>
+          <span class="eyebrow">About Hospital</span>
+          <h2 style="font-size:44px;line-height:1.05;margin:0 0 14px">Medique Multi-Speciality Hospital, Hyderabad</h2>
+          <p style="color:var(--muted)">Established in 2005, Medique is a 350-bed single hospital system with 120 doctors, 15 departments, modern ICU infrastructure, advanced operation theatres, diagnostics, pharmacy, and 24/7 ambulance support.</p>
+          <div class="inline-actions" style="margin-top:22px">
+            <button class="btn btn-primary" onclick="showPage('book')">Book Appointment</button>
+            <button class="btn btn-ghost" onclick="showPage('contact')">Contact Hospital</button>
+          </div>
+        </div>
+        <div class="image-card">
+          <img src="https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Hospital room and clinical infrastructure">
+          <div class="caption"><strong>Infrastructure</strong><p>ICU, modular OTs, diagnostics, pharmacy, ambulance network, and connected patient queue displays.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="section-tight">
+      <div class="wrap grid-3">
+        <div class="card"><h3>Mission</h3><p>Deliver efficient, transparent healthcare supported by smart scheduling and queue intelligence.</p></div>
+        <div class="card"><h3>Vision</h3><p>Become Telangana's most trusted digitally enabled hospital for everyday and emergency care.</p></div>
+        <div class="card"><h3>Achievements</h3><p>Quality-led hospital operations, patient safety programs, and digital transformation awards.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="page-departments">
+    <div class="section">
+      <div class="wrap">
+        <div class="section-title"><div><span class="eyebrow">Departments</span><h2>15 connected hospital departments</h2><p>Browse priority-ready departments with availability and live queue insight.</p></div></div>
+        <div class="grid-3" id="departmentsGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="page-doctors">
+    <div class="section">
+      <div class="wrap">
+        <div class="section-title"><div><span class="eyebrow">Doctors</span><h2>Find the right specialist</h2></div></div>
+        <div class="search-row">
+          <input id="doctorSearch" type="search" placeholder="Search by doctor, department, language" oninput="renderDoctors()">
+          <select id="doctorFilter" onchange="renderDoctors()"><option value="">All departments</option></select>
+        </div>
+        <div class="grid-4" id="doctorsGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="page-book">
+    <div class="section">
+      <div class="wrap">
+        <div class="section-title"><div><span class="eyebrow">Appointment Booking</span><h2>Reserve a visit and receive a queue token</h2><p>The system validates doctor availability, prevents duplicate bookings, blocks overlapping slots, and inserts the patient into the priority FIFO queue.</p></div></div>
+        <div class="grid-2">
+          <form class="card" onsubmit="event.preventDefault(); bookAppointment();">
+            <div class="form-grid">
+              <div class="field"><label for="patientName">Patient Name</label><input id="patientName" required placeholder="Full name"></div>
+              <div class="field"><label for="patientPhone">Mobile Number</label><input id="patientPhone" required inputmode="tel" placeholder="10-digit mobile"></div>
+              <div class="field"><label for="patientEmail">Email</label><input id="patientEmail" type="email" placeholder="name@example.com"></div>
+              <div class="field"><label for="appointmentType">Appointment Type</label><select id="appointmentType"><option>General Consultation</option><option>Follow-Up</option><option>Emergency Consultation</option></select></div>
+              <div class="field"><label for="departmentSelect">Department</label><select id="departmentSelect" required onchange="populateDoctorSelect(); renderSlots();"></select></div>
+              <div class="field"><label for="doctorSelect">Doctor</label><select id="doctorSelect" required onchange="renderSlots()"></select></div>
+              <div class="field"><label for="dateSelect">Date</label><input id="dateSelect" type="date" required onchange="renderSlots()"></div>
+              <div class="field"><label for="prioritySelect">Priority</label><select id="prioritySelect" required><option>Normal</option><option>High</option><option>Emergency</option></select></div>
+            </div>
+            <div class="field" style="margin-top:14px"><label>Available Slots</label><div class="slot-grid" id="slotGrid"></div></div>
+            <div class="field" style="margin-top:14px"><label for="notes">Symptoms or Notes</label><textarea id="notes" placeholder="Briefly describe your concern"></textarea></div>
+            <button class="btn btn-green" style="width:100%;margin-top:16px" type="submit">+ Confirm Appointment</button>
+          </form>
+          <aside class="card">
+            <span class="eyebrow">Queue Rules</span>
+            <h3 style="font-size:26px;margin:0 0 10px">Priority Queue + FIFO</h3>
+            <p style="color:var(--muted)">Serving order is Emergency, High Priority, then Normal. Patients inside the same priority level are served by booking time.</p>
+            <div class="mini-table" id="bookingPreview" style="margin-top:16px"></div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="page-queue">
+    <div class="section">
+      <div class="wrap">
+        <div class="section-title">
+          <div><span class="eyebrow">Queue Tracking</span><h2>Live patient queue status</h2><p>Current token, next token, doctor assignment, patient positions, and estimated wait times update from browser storage.</p></div>
+          <button class="btn btn-primary" onclick="refreshPublic()">Refresh</button>
+        </div>
+        <div class="grid-4" id="queueStats"></div>
+        <div style="height:18px"></div>
+        <div class="queue-table">
+          <table>
+            <thead><tr><th>Token</th><th>Patient</th><th>Priority</th><th>Doctor</th><th>Position</th><th>Wait Time</th><th>Status</th></tr></thead>
+            <tbody id="queueTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="page-emergency">
+    <div class="section">
+      <div class="wrap grid-2">
+        <div class="card" style="border-color:#ffcbc4">
+          <span class="eyebrow" style="color:var(--red)">Emergency Care</span>
+          <h2 style="font-size:44px;line-height:1.05;margin:0 0 14px">24/7 emergency response with priority queue handling</h2>
+          <p style="color:var(--muted)">Critical cases can be registered instantly and moved ahead of high and normal queues. Call our emergency desk or create an emergency token.</p>
+          <div class="inline-actions" style="margin-top:20px">
+            <a class="btn btn-danger" href="tel:04046881122">Call 040-4688-1122</a>
+            <button class="btn btn-ghost" onclick="quickEmergency()">Create Emergency Token</button>
+          </div>
+        </div>
+        <div class="image-card">
+          <img src="https://images.pexels.com/photos/263210/pexels-photo-263210.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Emergency hospital ambulance area">
+          <div class="caption"><strong>Emergency Pathway</strong><p>Triage, priority token, assigned doctor, queue update, consultation, discharge or admission.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="page-services">
+    <div class="section">
+      <div class="wrap">
+        <div class="section-title">
+          <div><span class="eyebrow">Services</span><h2>Hospital services built around fast patient flow</h2><p>Clinical, emergency, diagnostics, pharmacy, and ambulance services are connected to the same appointment and queue workflow.</p></div>
+          <button class="btn btn-green" onclick="showPage('book')">+ Book Appointment</button>
+        </div>
+        <div class="grid-3" id="servicesGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="page-contact">
+    <div class="section">
+      <div class="wrap grid-2">
+        <div>
+          <span class="eyebrow">Contact</span>
+          <h2 style="font-size:42px;line-height:1.05;margin:0 0 14px">Reach Medique Hospital</h2>
+          <div class="card flat"><b>Address</b><p>Medique Multi-Speciality Hospital, HITEC City Road, Hyderabad, Telangana 500081</p></div>
+          <div class="card flat"><b>Phone</b><p>Reception: 040-4688-1100<br>Emergency: 040-4688-1122</p></div>
+          <div class="card flat"><b>Email</b><p>care@mediquehospital.in</p></div>
+        </div>
+        <form class="card" onsubmit="event.preventDefault(); toast('Message received. Our care team will contact you.'); this.reset();">
+          <div class="field"><label>Name</label><input required></div>
+          <div class="field"><label>Email</label><input type="email" required></div>
+          <div class="field"><label>Message</label><textarea required></textarea></div>
+          <button class="btn btn-primary" type="submit">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div><h3>Medique</h3><p>Smart appointment scheduling and priority queue management for Medique Multi-Speciality Hospital, Hyderabad.</p></div>
+    <div><h4>Hospital</h4><p><a href="#about" onclick="showPage('about')">About</a></p><p><a href="#departments" onclick="showPage('departments')">Departments</a></p><p><a href="#doctors" onclick="showPage('doctors')">Doctors</a></p><p><a href="#services" onclick="showPage('services')">Services</a></p></div>
+    <div><h4>Care</h4><p><a href="#book" onclick="showPage('book')">Book Appointment</a></p><p><a href="#queue" onclick="showPage('queue')">Queue Tracking</a></p><p><a href="#emergency" onclick="showPage('emergency')">Emergency</a></p></div>
+    <div><h4>Contact</h4><p>HITEC City Road, Hyderabad</p><p>Emergency: 040-4688-1122</p><p>care@mediquehospital.in</p></div>
+  </div>
+</footer>
+
+<div class="modal" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+  <div class="modal-card">
+    <div class="modal-head">
+      <div><h3 id="loginTitle">Open Medique Portal</h3><p style="color:var(--muted);margin:6px 0 0">Choose a role to continue into the hospital management portal.</p></div>
+      <button class="close" onclick="closeLogin()" aria-label="Close">x</button>
+    </div>
+    <div class="grid-3" style="margin-top:18px">
+      <button class="btn btn-soft" onclick="goPortal('patient')">Patient</button>
+      <button class="btn btn-soft" onclick="goPortal('doctor')">Doctor</button>
+      <button class="btn btn-soft" onclick="goPortal('admin')">Admin</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="js/public.js"></script>
+</body>
+</html>
+
